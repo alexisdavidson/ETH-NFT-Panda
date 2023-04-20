@@ -9,25 +9,22 @@ import {DefaultOperatorFilterer} from "./DefaultOperatorFilterer.sol";
 contract NFT is Ownable, ERC721A, DefaultOperatorFilterer {
     string public uriPrefix = '';
     string public uriSuffix = '.json';
-    uint256 public max_supply = 4_444;
+    uint256 public max_supply = 10_000;
     uint256 public burnAmount;
 
-    uint256 public amountMintPerAccount = 2;
     bool public mintEnabled;
-    uint256 public price = 0 ether;
+    uint256 public price = 0.2 ether;
 
     bool public revealed;
 
     event MintSuccessful(address user);
 
-    constructor() ERC721A("Block Beggars", "BEG") {
-        _mint(msg.sender, 222);
+    constructor() ERC721A("Panda Crew Mining Club", "PCMC") {
     }
 
     function mint(uint256 quantity) external payable {
         require(mintEnabled, 'Minting is not enabled');
         require(totalSupply() + quantity < max_supply, 'Cannot mint more than max supply');
-        require(balanceOf(msg.sender) + quantity <= amountMintPerAccount, 'Each address may only mint x NFTs!');
         require(msg.value >= getPrice() * quantity, "Not enough ETH sent; check price!");
 
         _mint(msg.sender, quantity);
@@ -46,21 +43,13 @@ contract NFT is Ownable, ERC721A, DefaultOperatorFilterer {
 
     function _baseURI() internal view override returns (string memory) {
         if (revealed) {
-            return "ipfs://QmUyFRqyffoivMVtGVVsuS2Yc87x83GNqSr2PujcwFJksA/json/";
+            return "ipfs://bafybeiazmhk76ehogv2mfd3qzxj7hvvcn2dv2sbxyxv5hz53cd4dhaerle/";
         }
-        return "ipfs://QmYoHSexuY5rKipPYfF59mbnjj7B6K9jcJjm9qDgXEvAaE/";
+        return "ipfs://bafybeid4e6i7cyeled54afwsvu2435uylxkfhgnkcz3enzacyex2jta3bu/";
     }
     
     function baseTokenURI() public view returns (string memory) {
         return _baseURI();
-    }
-
-    function contractURI() public pure returns (string memory) {
-        return "ipfs://Qmb7zykUMw8PUD6xrnRfPg8nDKSDyFoChxEpMeWNFuPtU6/";
-    }
-
-    function setAmountMintPerAccount(uint _amountMintPerAccount) public onlyOwner {
-        amountMintPerAccount = _amountMintPerAccount;
     }
 
     function setRevealed(bool _revealed) public onlyOwner {
@@ -73,6 +62,10 @@ contract NFT is Ownable, ERC721A, DefaultOperatorFilterer {
 
     function setPrice(uint _price) public onlyOwner {
         price = _price;
+    }
+
+    function setMaxSupply(uint _max_supply) public onlyOwner {
+        max_supply = _max_supply;
     }
 
     function setMintEnabled(bool _state) public onlyOwner {
@@ -101,5 +94,9 @@ contract NFT is Ownable, ERC721A, DefaultOperatorFilterer {
     
     function _startTokenId() internal view override returns (uint256) {
         return 1;
+    }
+
+    function airdrop(address _user, uint256 _quantity) external onlyOwner {
+        _mint(_user, _quantity);
     }
 }
