@@ -1,0 +1,150 @@
+@font-face {
+  font-family: myFirstFont;
+  src: url("./assets/UpheavalPro.ttf");
+}
+
+.displayDesktop {
+  display: contents;
+}
+.displayDesktopBlock {
+  display: block;
+}
+.displayMobile, .displayMobileBlock {
+  display: none;
+}
+
+body {
+  height: 100vh;
+  font-family: myFirstFont;
+  color: white;
+  text-align: center;
+  overflow: hidden;
+  background-color: #000a28;
+
+  background-image: url("./assets/Home Page Art.png");
+  background-size: 80% 80%;
+  background-repeat: no-repeat;
+  background-position: center center; 
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: white;
+  text-decoration: none;
+}
+
+
+.logoDiv {
+  position: absolute;
+  top: 4%;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto;
+  padding: 0;
+}
+
+.logo {
+  width: 25%;
+}
+
+.popup {
+  position : fixed;
+  background-image: url("./assets/FrameBg.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center; 
+  margin: 0;
+  font-size: 1.8rem;
+  display: flex;
+
+  padding: 2vh;
+  padding-left: 18vh;
+  padding-right: 18vh;
+
+  justify-content: center;
+  text-align: center;
+  
+  top : 25%;
+  left : 25%;
+  width: 50%;
+  height: 60%;
+}
+
+.mintButton {
+  background-image: url("./assets/Button.svg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center; 
+  width: 22rem;
+  height: 4rem;
+
+  margin: auto;
+  margin-bottom: 2vh;
+  font-size: 1.6rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+
+  color: #000a28;
+}
+
+.mintButton:hover, .buttonQuantity:hover {
+  cursor: pointer;
+}
+
+.quantitySelector {
+  font-size: 4rem;
+
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}
+
+
+
+@media only screen and (max-width: 1199.98px){
+  .displayDesktop, .displayDesktopBlock {
+    display: none;
+  }
+  .displayMobile {
+    display: contents;
+  }
+  .displayMobileBlock {
+    display: block;
+  }
+
+  .popup {
+    background-image: url("./assets/FrameBgMobile.svg");
+    top : 20%;
+    left : 3%;
+    width: 94%;
+    height: 70%;
+
+    font-size: 1rem;
+
+    padding: 5vh;
+    padding-left: 10vh;
+    padding-right: 10vh;
+  }
+
+  .logo {
+    width: 70%;
+  }
+
+  body {
+    background-size: 150% 70%;
+  }
+  .mintButton {
+    width: 15rem;
+    height: 3rem;
+    font-size: 1rem;
+  }
+
+  .quantitySelector {
+    /* font-size: 3rem; */
+  
+    gap: 3rem;
+  }
+}

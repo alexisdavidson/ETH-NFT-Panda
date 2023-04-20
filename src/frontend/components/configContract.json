@@ -1,0 +1,4 @@
+{
+    "OPENSEA_API": "https://api.opensea.io/api/v1",
+    "OPENSEA_API_TESTNETS": "https://testnets-api.opensea.io/api/v1"
+}
